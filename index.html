@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>فروشگاه لوازم جانبی کامپیوتر</title>
+  <meta name="color-scheme" content="dark light">
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- Topbar -->
+  <header class="topbar" id="home">
+    <div class="container topbar-inner reveal">
+      <div class="brand">
+        <div class="logo">CS</div>
+        <div>
+          <div class="brand-title">فروشگاه لوازم جانبی کامپیوتر</div>
+          <div class="brand-sub">جستجو • سبد خرید • خرید آزمایشی</div>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <a class="nav-link" href="#products">محصولات</a>
+        <a class="nav-link" href="#about">درباره ما</a>
+        <a class="nav-link" href="#contact">ارتباط با ما</a>
+        <a class="nav-link cart-link" href="#cart">
+          سبد خرید
+          <span class="badge" id="cartCount">0</span>
+        </a>
+
+        <!-- Theme Toggle -->
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="تغییر تم">
+          <span class="theme-icon" id="themeIcon">🌙</span>
+          <span class="theme-text" id="themeText">دارک</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-text reveal">
+        <h1>تجربه خرید مدرن لوازم جانبی کامپیوتر</h1>
+        <p>
+          10 محصول همراه عکس + جستجوی زنده + سبد خرید با ذخیره‌سازی + فرآیند خرید آزمایشی.
+          (برای پرداخت واقعی نیاز به بک‌اند است.)
+        </p>
+
+        <div class="search-row">
+          <input id="searchInput" type="text" placeholder="جستجوی محصول: ماوس، SSD، کیبورد..." />
+          <button id="clearSearchBtn" class="btn btn-ghost" type="button">پاک کردن</button>
+        </div>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#products">مشاهده محصولات</a>
+          <a class="btn btn-ghost" href="#cart">رفتن به سبد خرید</a>
+        </div>
+      </div>
+
+      <div class="hero-card reveal">
+        <div class="hero-card-top">
+          <div>
+            <div class="kpi-title">وضعیت سیستم</div>
+            <div class="kpi-value">Demo Checkout</div>
+          </div>
+          <div class="chip">UI + Animations</div>
+        </div>
+
+        <div class="hero-card-body">
+          <div class="kpi">
+            <div class="kpi-num" id="kpiItems">0</div>
+            <div class="kpi-label">آیتم در سبد</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-num" id="kpiTotal">0</div>
+            <div class="kpi-label">مجموع (تومان)</div>
+          </div>
+        </div>
+
+        <div class="hero-card-footer">
+          <small>نکته: اطلاعات سبد در مرورگر ذخیره می‌شود.</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products -->
+  <section class="section" id="products">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>محصولات</h2>
+        <p>روی «افزودن» بزنید. کارت‌ها انیمیشن و hover دارند.</p>
+      </div>
+
+      <div class="grid" id="productGrid">
+        <!-- JS renders -->
+      </div>
+
+      <div class="empty reveal" id="emptyState" hidden>
+        محصولی با این عبارت پیدا نشد.
+      </div>
+    </div>
+  </section>
+
+  <!-- Cart -->
+  <section class="section alt" id="cart">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>سبد خرید</h2>
+        <p>افزایش/کاهش تعداد، حذف آیتم، و خالی کردن سبد.</p>
+      </div>
+
+      <div class="cart-wrap">
+        <div class="cart" id="cartItems">
+          <!-- JS renders -->
+        </div>
+
+        <aside class="summary reveal">
+          <h3>خلاصه خرید</h3>
+
+          <div class="summary-row">
+            <span>جمع کل</span>
+            <strong id="summaryTotal">0 تومان</strong>
+          </div>
+
+          <div class="summary-row">
+            <span>تعداد آیتم‌ها</span>
+            <strong id="summaryCount">0</strong>
+          </div>
+
+          <div class="summary-actions">
+            <button class="btn btn-danger" id="clearCartBtn" type="button">خالی کردن سبد</button>
+            <a class="btn btn-primary" href="#checkout">ادامه فرایند خرید</a>
+          </div>
+
+          <div class="note">
+            پرداخت واقعی پیاده‌سازی نشده (نسخه آموزشی/دمو).
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- Checkout -->
+  <section class="section" id="checkout">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>فرآیند خرید (آزمایشی)</h2>
+        <p>اگر سبد خالی باشد خطا می‌دهد؛ در غیر این صورت پیام موفقیت.</p>
+      </div>
+
+      <form class="form reveal" id="checkoutForm">
+        <div class="two-col">
+          <div class="field">
+            <label>نام و نام خانوادگی</label>
+            <input id="name" required placeholder="مثلاً: علی رضایی"/>
+          </div>
+          <div class="field">
+            <label>شماره تماس</label>
+            <input id="phone" required placeholder="مثلاً: 0912xxxxxxx" inputmode="tel"/>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>آدرس</label>
+          <input id="address" required placeholder="مثلاً: تهران، ..."/>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn btn-primary" type="submit">ثبت سفارش</button>
+          <button class="btn btn-ghost" type="reset">پاک کردن فرم</button>
+        </div>
+
+        <p class="msg" id="orderMessage"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="section alt" id="about">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>درباره ما</h2>
+      </div>
+
+      <div class="card text-card reveal">
+        <p>
+          ما یک فروشگاه تخصصی لوازم جانبی کامپیوتر هستیم. هدف ما ارائه تجربه کاربری
+          مدرن، سریع و قابل‌درک برای تمرین پروژه‌های فرانت‌اند است. این نسخه صرفاً
+          نمایشی است و پرداخت واقعی ندارد.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact (Modern) -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>ارتباط با ما</h2>
+        <p>اطلاعات تماس + فرم پیام مدرن با طراحی کارت‌محور.</p>
+      </div>
+
+      <div class="contact-modern">
+        <!-- Left: Contact info -->
+        <div class="card contact-card reveal">
+          <div class="contact-card-head">
+            <h3>پشتیبانی</h3>
+            <span class="pill">Support</span>
+          </div>
+
+          <div class="contact-list">
+            <a class="contact-item" href="tel:09123456789">
+              <div class="icon">📞</div>
+              <div class="contact-item-body">
+                <div class="label">تلفن</div>
+                <div class="value" dir="ltr">09123456789</div>
+              </div>
+              <div class="chev">↙</div>
+            </a>
+
+            <a class="contact-item" href="mailto:info@computer-shop.com">
+              <div class="icon">✉️</div>
+              <div class="contact-item-body">
+                <div class="label">ایمیل</div>
+                <div class="value" dir="ltr">info@computer-shop.com</div>
+              </div>
+              <div class="chev">↙</div>
+            </a>
+
+            <div class="contact-item" role="article" tabindex="0">
+              <div class="icon">📍</div>
+              <div class="contact-item-body">
+                <div class="label">آدرس</div>
+                <div class="value">تهران، خیابان مثال، پلاک ۱۲۳</div>
+              </div>
+              <div class="chev">•</div>
+            </div>
+          </div>
+
+          <div class="contact-hint">
+            ساعات پاسخگویی: ۹ تا ۱۸ (نمونه)
+          </div>
+
+          <div class="social-row">
+            <button class="social-btn" type="button" data-toast="اینستاگرام (نمونه)">Instagram</button>
+            <button class="social-btn" type="button" data-toast="تلگرام (نمونه)">Telegram</button>
+            <button class="social-btn" type="button" data-toast="واتساپ (نمونه)">WhatsApp</button>
+          </div>
+        </div>
+
+        <!-- Right: Message form -->
+        <div class="card contact-form-card reveal">
+          <div class="contact-card-head">
+            <h3>ارسال پیام</h3>
+            <span class="pill pill-primary">Message</span>
+          </div>
+
+          <form id="contactForm" class="contact-form">
+            <div class="two-col">
+              <div class="field">
+                <label>نام شما</label>
+                <input required placeholder="مثلاً: مهسا قدرتی" />
+              </div>
+              <div class="field">
+                <label>ایمیل</label>
+                <input required placeholder="name@example.com" inputmode="email" />
+              </div>
+            </div>
+
+            <div class="field">
+              <label>موضوع</label>
+              <input required placeholder="مثلاً: سوال درباره SSD اکسترنال" />
+            </div>
+
+            <div class="field">
+              <label>پیام</label>
+              <textarea required rows="5" placeholder="پیام خود را بنویسید..."></textarea>
+            </div>
+
+            <div class="form-actions">
+              <button class="btn btn-primary" type="submit">ارسال پیام</button>
+              <button class="btn btn-ghost" type="reset">پاک کردن</button>
+            </div>
+
+            <p class="msg" id="contactMsg"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-inner reveal">
+      <span>© 2026 فروشگاه لوازم جانبی کامپیوتر</span>
+      <a href="#home">بازگشت به بالا</a>
+    </div>
+  </footer>
+
+  <!-- Toast -->
+  <div class="toast" id="toast" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
